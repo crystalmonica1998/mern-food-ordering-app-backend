@@ -4,6 +4,16 @@ import RestaurantController from '../controllers/RestaurantController';
 
 const router = express.Router()
 
+router.get(
+  '/:restaurantId',
+  param('restaurantId')
+    .isString()
+    .trim()
+    .notEmpty()
+    .withMessage('restaurantId parameter must be a valid string'),
+    RestaurantController.getRestaurant
+);
+
 // /api/restaurant/search/london
 // validation is similar to other endpoints, but it is done here because it is a single param
 router.get(
